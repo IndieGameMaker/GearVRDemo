@@ -15,6 +15,7 @@ public class InputController : MonoBehaviour
         //트랙패드 터치
         if (OVRInput.Get(OVRInput.Button.PrimaryTouchpad))
         {
+            //트랙패드의 터치 좌표값
             Vector2 pos = OVRInput.Get(OVRInput.Axis2D.PrimaryTouchpad);
             Debug.LogFormat("Touch Position x={0}, y={1}", pos.x, pos.y);
         }
