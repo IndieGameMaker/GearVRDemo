@@ -10,6 +10,8 @@ public class LaserCaster : MonoBehaviour
 
     //레이저의 거리
     public float range = 10.0f;
+    //
+    public Color defaultColor = Color.white;
 
     void Start()
     {
@@ -24,5 +26,9 @@ public class LaserCaster : MonoBehaviour
         lineRenderer.useWorldSpace = false;
         lineRenderer.widthMultiplier = 0.05f;
         lineRenderer.SetPosition(1, new Vector3(0, 0, range));
+        //머티리얼을 생성해서 대입
+        Material mt = new Material(Shader.Find("Unlit/Color"));
+        mt.color = defaultColor;
+        lineRenderer.material = mt;
     }
 }
