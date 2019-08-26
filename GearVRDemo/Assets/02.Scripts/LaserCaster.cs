@@ -22,5 +22,7 @@ public class LaserCaster : MonoBehaviour
         lineRenderer = this.gameObject.AddComponent<LineRenderer>();
         //속성을 설정
         lineRenderer.useWorldSpace = false;
+        lineRenderer.widthMultiplier = 0.05f;
+        lineRenderer.SetPosition(1, new Vector3(0, 0, range));
     }
 }
