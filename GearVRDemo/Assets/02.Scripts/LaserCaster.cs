@@ -47,7 +47,7 @@ public class LaserCaster : MonoBehaviour
 
         //포인터 생성
         pointer = Instantiate(pointerPrefab
-                            , lineRenderer.GetPosition(1)
+                            , transform.position + lineRenderer.GetPosition(1)
                             , Quaternion.identity
                             , transform);
     }
