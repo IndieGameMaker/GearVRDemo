@@ -47,7 +47,7 @@ public class LaserCaster : MonoBehaviour
         else
         {
             pointer.transform.localPosition = tr.localPosition + new Vector3(0, 0, range);
-            //pointer.transform.LookAt(tr.position);
+            pointer.transform.LookAt(tr.position - pointer.transform.position);
         }
     }
 
