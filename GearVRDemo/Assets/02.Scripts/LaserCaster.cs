@@ -12,9 +12,13 @@ public class LaserCaster : MonoBehaviour
     public float range = 10.0f;
     //
     public Color defaultColor = Color.white;
+    //머티리얼 로드
+    private Material mt;
 
     void Start()
     {
+        //프로젝트 뷰의 Resources 폴더에 있는 Line 에셋을 로드.
+        mt = Resources.Load<Material>("Line");
         CreateLine();
     }
 
@@ -27,8 +31,8 @@ public class LaserCaster : MonoBehaviour
         lineRenderer.widthMultiplier = 0.05f;
         lineRenderer.SetPosition(1, new Vector3(0, 0, range));
         //머티리얼을 생성해서 대입
-        Material mt = new Material(Shader.Find("Unlit/Color"));
-        mt.color = defaultColor;
+        // Material mt = new Material(Shader.Find("Unlit/Color"));
+        // mt.color = defaultColor;
         lineRenderer.sharedMaterial = mt;
     }
 }
