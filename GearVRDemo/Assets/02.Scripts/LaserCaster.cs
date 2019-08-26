@@ -14,12 +14,22 @@ public class LaserCaster : MonoBehaviour
     public Color defaultColor = Color.white;
     //머티리얼 로드
     private Material mt;
+    //포인터 프리팹을 로드
+    private GameObject pointerPrefab;
+    //동적으로 생성해서 라인렌더러 끝에 위치시킬 객체
+    private GameObject pointer;
 
     void Start()
     {
         //프로젝트 뷰의 Resources 폴더에 있는 Line 에셋을 로드.
         mt = Resources.Load<Material>("Line");
+        pointerPrefab = Resources.Load<GameObject>("Pointer");
         CreateLine();
+    }
+
+    void Update()
+    {
+        
     }
 
     //라인렌더러를 생성하는 함수
@@ -34,5 +44,11 @@ public class LaserCaster : MonoBehaviour
         // Material mt = new Material(Shader.Find("Unlit/Color"));
         // mt.color = defaultColor;
         lineRenderer.sharedMaterial = mt;
+
+        //포인터 생성
+        pointer = Instantiate(pointerPrefab
+                            , lineRenderer.GetPosition(1)
+                            , Quaternion.identity
+                            , transform);
     }
 }
