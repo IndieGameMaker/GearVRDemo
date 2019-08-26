@@ -35,11 +35,17 @@ public class LaserCaster : MonoBehaviour
         // (광선의 발사원점, 발사방향, 결괏값, 거리)
         if (Physics.Raycast(tr.position, tr.forward, out hit, range))
         {
-            pointer.transform.localRotation = Quaternion.LookRotation(hit.normal);
+            //라인렌더러의 끝좌표를 보정
+            lineRenderer.SetPosition(1, new Vector3(0, 0, hit.distance));
+            //포인터의 끝좌표를 보정
+            pointer.transform.localPosition = tr.localPosition + new Vector3(0, 0, hit.distance);
+            //포인터의 각도 수정
+            pointer.transform.rotation = Quaternion.LookRotation(hit.normal);
         }
         else
         {
-            pointer.transform.LookAt(tr.position);
+            pointer.transform.localPosition = tr.localPosition + new Vector3(0, 0, range);
+            //pointer.transform.LookAt(tr.position);
         }
     }
 
