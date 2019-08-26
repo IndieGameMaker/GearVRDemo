@@ -18,9 +18,12 @@ public class LaserCaster : MonoBehaviour
     private GameObject pointerPrefab;
     //동적으로 생성해서 라인렌더러 끝에 위치시킬 객체
     private GameObject pointer;
+    //Raycast 충돌한 지점의 정보를 반환할 구조체(Structure)
+    private RaycastHit hit;
 
     void Start()
     {
+        tr = GetComponent<Transform>();
         //프로젝트 뷰의 Resources 폴더에 있는 Line 에셋을 로드.
         mt = Resources.Load<Material>("Line");
         pointerPrefab = Resources.Load<GameObject>("Pointer");
@@ -29,7 +32,15 @@ public class LaserCaster : MonoBehaviour
 
     void Update()
     {
-        
+        // (광선의 발사원점, 발사방향, 결괏값, 거리)
+        if (Physics.Raycast(tr.position, tr.forward, out hit, range))
+        {
+            pointer.transform.localRotation = Quaternion.LookRotation(hit.normal);
+        }
+        else
+        {
+            pointer.transform.LookAt(tr.position);
+        }
     }
 
     //라인렌더러를 생성하는 함수
