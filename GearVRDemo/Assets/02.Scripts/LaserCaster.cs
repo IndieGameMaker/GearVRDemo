@@ -29,6 +29,6 @@ public class LaserCaster : MonoBehaviour
         //머티리얼을 생성해서 대입
         Material mt = new Material(Shader.Find("Unlit/Color"));
         mt.color = defaultColor;
-        lineRenderer.material = mt;
+        lineRenderer.sharedMaterial = mt;
     }
 }
