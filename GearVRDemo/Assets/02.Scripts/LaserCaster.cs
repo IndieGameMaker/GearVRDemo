@@ -38,7 +38,9 @@ public class LaserCaster : MonoBehaviour
             //라인렌더러의 끝좌표를 보정
             lineRenderer.SetPosition(1, new Vector3(0, 0, hit.distance));
             //포인터의 끝좌표를 보정
-            pointer.transform.localPosition = tr.localPosition + new Vector3(0, 0, hit.distance);
+            pointer.transform.localPosition = tr.localPosition 
+                                            - Vector3.forward * 0.1f
+                                            + new Vector3(0, 0, hit.distance);
             //포인터의 각도 수정
             pointer.transform.rotation = Quaternion.LookRotation(hit.normal);
         }
